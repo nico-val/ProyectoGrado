@@ -1,0 +1,50 @@
+<h2>Generar Firma Electronica</h2>
+
+<form (ngSubmit)="onSubmit(myForm.value, myForm.valid)" [formGroup]="myForm">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Clave</label>
+            <div class="col-md-10">
+                <!--@Html.DropDownListFor(m => m.ClaveId, new SelectList(ViewBag.Claves, "Key", "Value"), "Seleccione una clave", new { @class = "form-control" })-->
+                <select class="form-control" id="clave" formControlName="ClaveId">                    
+                    <option *ngFor="let clave of this.availableKeys" value="{{clave.id}}">{{clave.nombreIdentificativo}}</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Archivo</label>
+            <div class="col-md-10">                
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            Elegir archivo&hellip; <input type="file" name="Archivo" style="display: none;" formControlName="Archivo" (change)="onChange($event)">
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" readonly value="{{this.fileName}}">
+                </div>
+
+                <!--<input type="file" name="Archivo" formControlName="Archivo" (change)="onChange($event)">-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Contraseña</label>
+            <div class="col-md-10">                
+                <input type="password" class="form-control" id="password" formControlName="Password"/>                
+                <small id="fileHelp" class="form-text text-muted">Reingrese su contraseña para generar la firma electrónica</small>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Generar Firma Electrónica" class="btn btn-default" />
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+

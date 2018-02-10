@@ -1,0 +1,98 @@
+﻿<!--<nav class="navbar navbar-default navbar-fixed-side navbar-inverse">-->
+<div class="container">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./">ProyectoGrado_SFE</a>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav" *ngIf="!authenticationService.IsLoggedIn">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a routerLink="/FirmaElectronica/Verificar">Verificar Firma Electrónica</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a routerLink="/login">Ingresar</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav" *ngIf="authenticationService.Role == 'Usuario'">
+
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mis claves <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/Claves">Lista de claves</a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/Claves/NuevoPar">Crear nuevo par de claves</a>
+                    </li>
+                </ul>
+
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Firma Electrónica <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/FirmaElectronica/Generar">Generar Firma Electrónica</a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/FirmaElectronica/Verificar">Verificar Firma Electrónica</a>
+                    </li>
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li><a asp-area="" asp-controller="FirmaElectronica" asp-action="RegistroFirmasElectronicas">Mis Firmas Electrónicas</a></li>-->
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav" *ngIf="authenticationService.Role == 'AutoridadDeRegistro'">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a routerLink="/AprobacionClavesNoCertificadas">Claves</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav" *ngIf="authenticationService.Role == 'AutoridadCertificante'">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a routerLink="/SolicitudesCertificacion">Solicitudes de certificación</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav" *ngIf="authenticationService.Role == 'Administrador'">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administración de Usuarios<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/Usuarios">Lista de usuarios</a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/Usuarios/Crear">Crear nuevo usuario</a>
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auditoría<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a routerLink="/AuditoriaFirmasElectronicas">Auditoría de firmas electrónicas</a>
+                    </li>                    
+                </ul>
+
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right" *ngIf="authenticationService.IsLoggedIn">
+            <li>
+                <a routerLink="/PanelControl">{{authenticationService.UserName}}</a>
+            </li>
+            <li>
+                <a style="cursor: pointer;" (click)="logOut()">Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--</nav>-->

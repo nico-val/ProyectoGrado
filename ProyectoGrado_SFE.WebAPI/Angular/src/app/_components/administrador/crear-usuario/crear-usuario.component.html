@@ -1,0 +1,49 @@
+
+<h2>Crear nuevo usuario</h2>
+
+<form (ngSubmit)="onSubmit(nuevoUsuarioForm)" #nuevoUsuarioForm="ngForm">
+    <div class="form-horizontal">
+        <hr>
+
+        <!--<h4>Ingrese los datos para la Solicitud de Firmado de Certificado:</h4>-->
+
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="NombreIdentificativo">Email</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" required name="Email" [(ngModel)]="model.Email" #UserName="ngModel">
+                <!--<small id="fileHelp" class="form-text text-muted">Nombre con el que identificará al par de claves.</small>-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="NombreIdentificativo">Tipo de usuario</label>
+            
+            <div class="col-md-10">
+                <select class="form-control" required name="Role" [(ngModel)]="model.Role" #Role="ngModel">
+                    <option value="Usuario">Usuario normal</option>
+                    <option value="AutoridadDeRegistro">Autoridad de Registro</option>
+                    <option value="AutoridadCertificante">Autoridad Certificante</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+                
+                <small id="fileHelp" class="form-text text-muted">Un correo electrónico será enviado con las instrucciones para crear la contraseña y configurar la autenticación de dos pasos.</small>
+            </div>
+        </div>
+        
+        <div *ngIf="nuevoUsuarioForm.submitted && !nuevoUsuarioForm.valid">
+            <p class="text-danger field-validation-valid">Debe completar todos los campos.</p>
+        </div>
+        <div *ngIf="this.errorMessage">
+            <p class="text-danger field-validation-valid">{{this.errorMessage}}</p>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear usuario" class="btn btn-default">
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a [routerLink]="['/Claves']">Volver a la lista</a>
+</div>

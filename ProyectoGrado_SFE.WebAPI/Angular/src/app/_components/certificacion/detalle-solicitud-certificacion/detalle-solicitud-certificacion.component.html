@@ -1,0 +1,143 @@
+<h2>Detalles de solicitud de certificación</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Usuario solicitante
+        </dt>
+        <dd>
+            {{data.userName}}
+        </dd>
+
+        <dt>
+            Clave Pública
+        </dt>
+        <dd style="font-family:monospace;">
+            {{data.formattedPublicKey}}
+        </dd>
+
+        <dt>
+            Fecha de creación
+        </dt>
+        <dd>
+            {{data.fechaCreacion}}
+        </dd>
+    </dl>
+    <div class="panel panel-default">
+        <div class="panel-heading">Datos de la Solicitud de Firmado de Certificado (PKCS#10)</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre común
+                </dt>
+                <dd>
+                    {{data.nombreComun}}
+                </dd>
+                <dt>
+                    Email
+                </dt>
+                <dd>
+                    {{data.email}}
+                </dd>
+                <dt>
+                    Organización
+                </dt>
+                <dd>
+                    {{data.organizacion}}
+                </dd>
+                <dt>
+                    Unidad organizacional
+                </dt>
+                <dd>
+                    {{data.unidadOrganizacional}}
+                </dd>
+                <dt>
+                    Localidad
+                </dt>
+                <dd>
+                    {{data.localidad}}
+                </dd>
+                <dt>
+                    Estado / Provincia
+                </dt>
+                <dd>
+                    {{data.estadoOProvincia}}
+                </dd>
+                <dt>
+                    País
+                </dt>
+                <dd>
+                    {{data.pais}}
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Autoridad de Registro</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    Usuario Aut. Registro
+                </dt>
+                <dd>
+                    {{data.usuarioVerificador}}
+                </dd>
+                <dt>
+                    Fecha de verificación
+                </dt>
+                <dd>
+                    {{data.fechaVerificacion}}
+                </dd>
+                <dt>
+                    Estado de verificación
+                </dt>
+                <dd>
+                    {{data.estadoVerificacion}}
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-horizontal">
+            <input type="hidden" name="id" value="@Model.ClaveId" />
+            <div class="form-group">
+                <label class="col-md-2 control-label">1) Firme el CSR:</label>
+                <div class="col-md-10">
+                    <a (click)="descargarCSR()" class="btn btn-default" role="button">Descargar Certificate Signature Request</a>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">2) Cargue el certificado</label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                Elegir certificado&hellip; <input type="file" name="file" style="display: none;" accept=".crt" (change)="onChange($event)" />
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly value="{{this.fileName}}">
+                    </div>
+                    <span class="text-danger"></span>
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-3">
+                    <input type="submit" value="Cargar certificado" class="btn btn-default" />
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="certificateLoadingErrorMessage != null" class="alert alert-danger">
+                        {{certificateLoadingErrorMessage}}.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <a routerLink="/SolicitudesCertificacion" class="btn btn-link" role="button">Volver a la lista</a>
+</div>

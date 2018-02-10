@@ -1,0 +1,45 @@
+<h2>Auditoría</h2>
+<h3>Firmas electrónicas</h3>
+
+<p>
+    Solo podrán ser utilizados los pares de claves que hayan sido certificados por la Autoridad Certificante. Contacte a su Autoridad de Registro.
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Usuario
+            </th>
+
+            <th>
+                Nombre identificativo de clave
+            </th>
+
+            <th>
+                Archivo firmado
+            </th>
+            <th>Tamaño</th>
+            <th>Fecha de generación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let firma of data">
+            <td>
+                {{firma.userName}}
+            </td>
+            <td>
+                {{firma.nombreClave}}
+            </td>
+            <td>
+                {{firma.nombreArchivo}}
+            </td>
+            <td>
+                {{firma.tamanoArchivo}} bytes
+            </td>
+            <td>
+                {{firma.fechaGeneracion}}
+            </td>
+        </tr>
+    </tbody>
+</table>

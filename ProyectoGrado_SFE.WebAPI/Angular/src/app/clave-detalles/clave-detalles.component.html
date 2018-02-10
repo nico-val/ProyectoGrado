@@ -1,0 +1,99 @@
+﻿<!--@{
+    string panelAutoridadRegistro;
+    if (Model.EstadoVerificacion == "Aprobado") { panelAutoridadRegistro = "panel-success"; }
+    else if (Model.EstadoVerificacion == "Rechazado") { panelAutoridadRegistro = "panel-danger"; }
+    else { panelAutoridadRegistro = "panel-default"; }
+}
+
+@{
+    string panelAutoridadCeritificacion;
+    if (Model.FechaCertificacion == DateTime.MinValue) { panelAutoridadCeritificacion = "panel-default"; }
+    else { panelAutoridadCeritificacion = "panel-success"; }
+
+}-->
+<h2>Detalles de Clave</h2>
+
+<div>
+    <h4>{{this.keyDetails.nombreIdentificativo}}</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Nombre Identificativo
+        </dt>
+        <dd>
+            {{this.keyDetails.nombreIdentificativo}}
+        </dd>
+
+        <dt>
+            Clave Pública
+        </dt>
+        <dd>
+            {{this.keyDetails.formattedPublicKey}}
+        </dd>
+    </dl>
+
+    <a (click)="descargarCertificado()" class="btn btn-default" role="button" *ngIf="this.keyDetails.fechaCertificacion != null">Descargar Certificado</a>
+    <hr />
+    <div class="panel" [ngClass]="{'panel-success' : this.keyDetails.estadoVerificacion == 'Aprobado', 'panel-danger' : this.keyDetails.estadoVerificacion == 'Rechazado',  'panel-default' : this.keyDetails.estadoVerificacion == null}">
+        <div class="panel-heading">Autoridad de Registro</div>
+        <div class="panel-body" *ngIf="this.keyDetails.fechaVerificacion != null">
+            <dt>
+                Usuario verificador
+            </dt>
+            <dd>
+                {{this.keyDetails.usuarioVerificador}}
+            </dd>
+
+            <dt>
+                Estado de verificación
+            </dt>
+            <dd>
+                {{this.keyDetails.estadoVerificacion}}
+            </dd>
+
+            <dt>
+                Fecha de verificación
+            </dt>
+            <dd>
+                {{this.keyDetails.fechaVerificacion}}
+            </dd>
+        </div>
+        <div class="panel-body" *ngIf="this.keyDetails.fechaVerificacion == null">
+            <p>La Autoridad de Registro todavía no validó la solicitud de certificado</p>
+        </div>
+    </div>
+    <div class="panel" [ngClass]="this.keyDetails.fechaCertificacion? 'panel-success' : 'panel-default'">
+        <div class="panel-heading">Autoridad de Certificación</div>
+        <div class="panel-body" *ngIf="this.keyDetails.fechaCertificacion != null">
+
+            
+            <dt>
+                Usuario certificador
+            </dt>
+            <dd>
+                {{this.keyDetails.usuarioCertificador}}
+            </dd>
+
+            <dt>
+                Fecha de certificación
+            </dt>
+            <dd>
+                {{this.keyDetails.fechaCertificacion}}
+            </dd>
+
+            <dt>
+                Fecha de validez
+            </dt>
+            <dd>
+                {{this.keyDetails.fechaValidez}}
+            </dd>            
+        </div>
+        <div class="panel-body" *ngIf="this.keyDetails.fechaCertificacion == null">
+            <p>La Autoridad de Certificación todavía no firmó la solicitud de certificado</p>
+        </div>
+    </div>
+</div>
+<div>
+    <a routerLink="/Claves">Volver a la lista</a>
+</div>

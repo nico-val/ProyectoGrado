@@ -1,0 +1,31 @@
+<h2>Auditoría</h2>
+<h3>Usuarios</h3>
+
+<!--<p>
+    Solo podrán ser utilizados los pares de claves que hayan sido certificados por la Autoridad Certificante. Contacte a su Autoridad de Registro.
+</p>-->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre de usuario
+            </th>
+
+            <th>
+                Rol
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of data">
+            <td>
+                {{user.userName}}
+            </td>
+            <td>
+                {{user.role}}
+            </td>            
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,91 @@
+<h2>Detalles de solicitud</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Usuario solicitante
+        </dt>
+        <dd>
+            {{this.keyDetails.userName}}
+        </dd>
+
+        <dt>
+            Clave Pública
+        </dt>
+        <dd style="font-family:monospace;">
+            {{this.keyDetails.formattedPublicKey}}
+        </dd>
+
+        <dt>
+            Fecha de creación
+        </dt>
+        <dd>
+            {{this.keyDetails.fechaCreacion}}
+        </dd>
+    </dl>
+    <div class="panel panel-default">
+        <div class="panel-heading">Datos de la Solicitud de Firmado de Certificado (PKCS#10)</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre común
+                </dt>
+                <dd>
+                    {{this.keyDetails.nombreComun}}
+                </dd>
+                <dt>
+                    Email
+                </dt>
+                <dd>
+                    {{this.keyDetails.email}}
+                </dd>
+                <dt>
+                    Organización
+                </dt>
+                <dd>
+                    {{this.keyDetails.organizacion}}
+                </dd>
+                <dt>
+                    Unidad Organizacional
+                </dt>
+                <dd>
+                    {{this.keyDetails.unidadOrganizacional}}
+                </dd>
+
+
+                <dt>
+                    Localidad
+                </dt>
+                <dd>
+                    {{this.keyDetails.localidad}}
+                </dd>
+
+
+                <dt>
+                    Estado / Provincia
+                </dt>
+                <dd>
+                    {{this.keyDetails.estadoOProvincia}}
+                </dd>
+
+                <dt>
+                    Pais
+                </dt>
+                <dd>
+                    {{this.keyDetails.pais}}
+                </dd>
+
+
+
+
+
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a (click)="aprobar()" class="btn btn-success" role="button">Aprobar</a>
+    <a (click)="rechazar()" class="btn btn-danger" role="button">Rechazar</a>
+    <a routerLink="/AprobacionClavesNoCertificadas" class="btn btn-link" role="button">Volver a la lista</a>
+</div>

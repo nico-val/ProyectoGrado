@@ -1,0 +1,76 @@
+<h2>Mis claves</h2>
+
+<p>
+  <a [routerLink]="['/Claves/NuevoPar']">Crear nuevo par de claves</a>
+</p>
+<p>
+  Solo podrán ser utilizados los pares de claves que hayan sido certificados por la Autoridad Certificante. Contacte a su Autoridad de Registro.
+</p>
+
+<h3>Claves certificadas</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 170px;">
+        Nombre Identificativo
+      </th>
+
+      <th>
+        Clave Pública
+      </th>
+
+      <th style="width: 210px;">
+        Vencimiento del certificado
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let clave of data.clavesCertificadas">
+      <td>
+        {{clave.nombreIdentificativo}}
+      </td>
+      <td>
+        <span style="font-family:monospace;">{{clave.formattedPublicKey}}</span>
+      </td>
+      <td>
+        {{clave.fechaValidez}}
+      </td>
+      <td>
+          <a routerLink="/Claves/{{clave.id}}">Detalles</a>
+      </td>
+    </tr>    
+  </tbody>
+</table>
+
+<h3>Claves pendientes de certificación</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 170px;">
+        Nombre Identificativo
+      </th>
+
+      <th>
+        Clave Pública
+      </th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let clave of data.clavesPendientes">
+      <td>
+        {{clave.nombreIdentificativo}}
+      </td>
+      <td>
+        <span style="font-family:monospace;">{{clave.formattedPublicKey}}</span>
+      </td>
+
+      <td>
+          <a routerLink="/Claves/{{clave.id}}">Detalles</a>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>

@@ -1,0 +1,53 @@
+<h2>Solicitudes de certificación</h2>
+
+<p>
+    Seleccione una clave
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Usuario solicitante
+            </th>
+
+            <th>
+                Nombre identificativo
+            </th>
+
+            <th>
+                Fecha de creación
+            </th>
+
+            <th>
+                Usuario verificador
+            </th>
+
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let solicitud of data">
+            <td>
+                {{solicitud.userName}}
+            </td>
+            <td> 
+                {{solicitud.nombreIdentificativo}}
+            </td>
+            <td>
+                {{solicitud.fechaCreacion}}
+            </td>
+            <td>
+                {{solicitud.usuarioVerificador}}
+            </td>
+            <td>
+                <a routerLink="/SolicitudesCertificacion/{{solicitud.claveId}}">Detalles</a>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>

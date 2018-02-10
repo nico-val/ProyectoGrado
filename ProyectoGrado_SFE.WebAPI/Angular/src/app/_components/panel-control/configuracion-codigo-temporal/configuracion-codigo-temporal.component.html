@@ -1,0 +1,36 @@
+<h2>Configuración de verificación de dos pasos</h2>
+<hr />
+
+<div class="container">
+    <p>1) Descargue <span style="font-weight: bold;">Google Authenticator</span> en su dispositivo móvil para generar códigos de acceso.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><img src="{{googlePlayImagePath}}" height="50" /></a>
+                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"><img src="{{appStoreImagePath}}" height="50" /></a>
+    
+    <p>2) Use Google Authenticator para leer el siguiente código QR:</p>
+    <div>
+        <qr-code [value]="this.keyUri" [size]="200"></qr-code>
+    </div>
+
+
+    
+    <p class="">{{this.newSecret}}</p>
+
+</div>
+
+<form (ngSubmit)="onSubmit()" class="form-horizontal">
+    
+    <div class="text-danger"></div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Código</label>
+        <div class="col-md-9">
+            <input type="number" [(ngModel)]="this.model.code" name="code" class="form-control" />
+            <span asp-validation-for="OldPassword" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Verificar</button>
+        </div>
+    </div>
+</form>
